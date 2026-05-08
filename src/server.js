@@ -2,11 +2,14 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 const connectDatabase = require('./config/database');
+const limiter = require('./config/security')
 const Pessoa = require('./models/pessoa');
+
 
 const app = express();
 const PORT = 3000;
 
+app.use(limiter);
 app.use(express.json());
 
 app.get('/debug', async (req, res) => {
